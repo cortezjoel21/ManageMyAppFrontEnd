@@ -5,12 +5,11 @@ import Route from 'react-router-dom/Route';
 
 import Login from './component/login/login';
 import Home from './component/home/home';
-
 class App extends Component {
 
     render() {
         return (
-            <Router>
+            < Router >
                 <div className="App">
                     <Route path="/" exact strict render={
                         () => {
@@ -26,8 +25,7 @@ class App extends Component {
                     }>
                     </Route>
                 </div>
-            </Router>
-            
+            </Router >
         )
     }
 }

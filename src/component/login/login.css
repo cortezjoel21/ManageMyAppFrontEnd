@@ -13,20 +13,6 @@ body{
     position: relative;
     padding-top: 35px;
   }
-  
-  .outer-screen:before{
-    content: "";
-    background: #3e4a53;
-    border-radius: 50px;
-    position: absolute;
-    bottom: 20px;
-    left: 0px;
-    right: 0px;
-    margin: auto;
-    z-index: 9999;
-    width: 50px;
-    height: 50px;
-  }
 
   .inner-screen{
     width: 800px;
@@ -91,6 +77,11 @@ body{
       color: none;
       text-decoration: none;
   }
+  .link:hover{
+    color: none;
+    text-decoration: none;
+}
+
   
   a:hover{
     color: #1abc9d;
