@@ -28,8 +28,6 @@ class Registration extends Component {
     saveUser() {
         axios.post('http://localhost:8080/dashboard/addUser', this.state.newUser).then((response) => {
             let { users } = this.state;
-
-
             this.setState({
                 users, registerModal: false, newUser: {
                     id: '',

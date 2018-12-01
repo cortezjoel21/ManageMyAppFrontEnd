@@ -3,41 +3,60 @@ import './login.css';
 
 import { BrowserRouter as Router, Link, NavLink, Redirect, Prompt } from 'react-router-dom';
 import Registration from '../registration/registration';
-
+import axios from 'axios';
 class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.loginHandle = this.loginHandle.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            user: {
+                username: "",
+                password: "",
+                logIn: false
+            },
+            username: "",
+            password: ""
+        }
     }
 
-    loginHandle(event) {
-        this.setState({ value: event.target.value });
+    login() {
+        axios.post('http://localhost:8080/login', this.state.user).then((response) => {
+            console.log(response.data);
+            this.setState({
+                user: response.data
+            })
+        });
     }
-
-    handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-    }
-
     render() {
+        if (this.state.user.logIn) {
+            return <Redirect to='/home' />;
+        }
+
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="container">
-                    <div className="outer-screen">
-                        <div className="inner-screen">
-                            <div className="form">
-                                <input type="text" placeholder="Username" />
-                                <input type="text" placeholder="Password" />
-                                <Link className="link" to="/home" >
-                                    <input type="submit" value="Login" />
-                                </Link>
-                                <Registration></Registration>
-                            </div>
+            <div className="container">
+                <div className="outer-screen">
+                    <div className="inner-screen">
+                        <div className="form">
+                            <input type="text" placeholder="Username" value={this.state.user.username}
+                                onChange={(e) => {
+                                    let { user } = this.state;
+                                    user.username = e.target.value;
+                                    this.setState({ user });
+                                }}
+                            />
+                            <input type="text" placeholder="Password" value={this.state.user.password}
+                                onChange={(e) => {
+                                    let { user } = this.state;
+                                    user.password = e.target.value;
+                                    this.setState({ user });
+                                }}
+                            />
+                            <input type="submit" value="Login" onClick={() => { this.login() }} />
+                            <Registration></Registration>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div >
         )
     }
 }
