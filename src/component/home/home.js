@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { FormGroup, Table, Button, Modal, NavLink, ModalHeader, ModalBody, ModalFooter, InputGroup, Input, Label } from 'reactstrap';
-import axios from 'axios';
-import Users from '../users/user';
+import Users from '../users/users';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Userdetails from '../users/userdetails';
+import Route from 'react-router-dom/Route';
 
 class Home extends Component {
 
@@ -12,7 +13,17 @@ class Home extends Component {
     render() {
 
         return (
-            <Users />
+            < Router >
+                <div className="Home">
+                    <Route path="/home/" exact strict render={
+                        () => {
+                            return (<Users />)
+                        }
+                    }>
+                    </Route>
+                   
+                </div>
+            </ Router>
         )
     }
 

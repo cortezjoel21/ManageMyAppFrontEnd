@@ -5,6 +5,7 @@ import Route from 'react-router-dom/Route';
 
 import Login from './component/login/login';
 import Home from './component/home/home';
+import Userdetails from './component/users/userdetails';
 class App extends Component {
 
     render() {
@@ -18,9 +19,15 @@ class App extends Component {
                     }>
                     </Route>
 
-                    <Route path="/home" exact strict render={
+                    <Route path="/home/" exact strict render={
                         () => {
                             return (<Home></Home>)
+                        }
+                    }>
+                    </Route>
+                    <Route path="/userdetails/"  render={
+                        () => {
+                            return (<Userdetails></Userdetails>)
                         }
                     }>
                     </Route>

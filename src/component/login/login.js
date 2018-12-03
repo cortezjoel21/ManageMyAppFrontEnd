@@ -27,9 +27,10 @@ class Login extends Component {
             })
         });
     }
+
     render() {
         if (this.state.user.logIn) {
-            return <Redirect to='/home' />;
+            return <Redirect to='/home/'/>;
         }
 
         return (
