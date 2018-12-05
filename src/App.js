@@ -8,7 +8,25 @@ import Home from './component/home/home';
 import Userdetails from './component/users/userdetails';
 class App extends Component {
 
+    constructor() {
+        super();
+        localStorage.setItem("username", "bill");
+        localStorage.setItem("username", "abc123");
+        return fetch(`curl -u bill:abc123 http://localhost:8080/dashboard/getUsers'`, {
+            header: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'username': 'bill',
+                'password': 'abc123'
+            },
+            method: "POST",
+            body: JSON.stringify({ username, password }),
+        }).then((a) => localStorage.auth = JSON.stringify(a))
+        
+    }
+    
     render() {
+     
         return (
             < Router >
                 <div className="App">
@@ -25,7 +43,7 @@ class App extends Component {
                         }
                     }>
                     </Route>
-                    <Route path="/userdetails/"  render={
+                    <Route path="/userdetails/" render={
                         () => {
                             return (<Userdetails></Userdetails>)
                         }

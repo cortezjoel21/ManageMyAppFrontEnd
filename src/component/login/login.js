@@ -20,6 +20,8 @@ class Login extends Component {
     }
 
     login() {
+ 
+
         axios.post('http://localhost:8080/login', this.state.user).then((response) => {
             console.log(response.data);
             this.setState({
@@ -30,7 +32,7 @@ class Login extends Component {
 
     render() {
         if (this.state.user.logIn) {
-            return <Redirect to='/home/'/>;
+            return <Redirect to='/home/' />;
         }
 
         return (

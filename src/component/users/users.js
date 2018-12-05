@@ -28,7 +28,8 @@ class Users extends Component {
     }
 
     _getUsers() {
-        axios.get('http://localhost:8080/dashboard/getUsers').then((response) => {
+
+        axios.get('curl -u bill:abc123 http://localhost:8080/dashboard/getUsers').then((response) => {
             this.setState({
                 updateUserModal: false,
                 users: response.data
