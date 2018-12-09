@@ -2,9 +2,9 @@
 This is an application that can give tasks to the registered users.
 
 ## Requirements
-> - 1. VSCode
-> - 2. Nodejs
-> - 3. NPM
+> 1. VSCode
+> 2. Nodejs
+> 3. NPM
 
 ## Steps to Setup	
 > - **Clone the application**
