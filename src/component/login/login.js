@@ -19,14 +19,19 @@ class Login extends Component {
         }
     }
 
-    login() {
- 
 
+
+    login() {
+        let headers = {};
         axios.post('http://localhost:8080/login', this.state.user).then((response) => {
-            console.log(response.data);
+            console.log("response.headers: ", response.headers);
             this.setState({
-                user: response.data
+                user: response.data,
             })
+            localStorage.setItem("token", this.state.user.auth) //Persist
+            console.log("localStorage: ", localStorage.getItem("token"));
+        }).catch(error => {
+            console.log("ERROR: ", error);
         });
     }
 
@@ -36,7 +41,7 @@ class Login extends Component {
         }
 
         return (
-            <div className="container">
+            <div className="container" >
                 <div className="outer-screen">
                     <div className="inner-screen">
                         <div className="form">

@@ -6,7 +6,8 @@ class Users extends Component {
 
     constructor() {
         super();
-        localStorage.setItem('userId', "")
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+        console.log("localStorage: ", localStorage.getItem("token"));
     }
 
     state = {
@@ -28,8 +29,8 @@ class Users extends Component {
     }
 
     _getUsers() {
-
-        axios.get('curl -u bill:abc123 http://localhost:8080/dashboard/getUsers').then((response) => {
+        console.log("token: ", localStorage.getItem("token"));
+        axios.get('http://localhost:8080/dashboard/getUsers').then((response) => {
             this.setState({
                 updateUserModal: false,
                 users: response.data
@@ -63,16 +64,14 @@ class Users extends Component {
         });
     }
 
-    addTaskUserPage(userId) {
-        console.log("userId:", userId);
-        this.setState({ renderPage: '/userdetails/' });
+    userDetailsPage() {
+        this.setState({ renderPage: '/home/userdetails/' });
     }
 
     render() {
-        let renderPage = this.state.renderPage;
-        if (renderPage != '') {
-            console.log("renderPage:", renderPage);
-            return <Redirect to='/'/>;
+        if ( this.state.renderPage != '') {
+            console.log("renderPage:",  this.state.renderPage);
+            return <Redirect to={ this.state.renderPage} />;
         }
 
         this.deleteUser = this.deleteUser.bind(this);
@@ -82,9 +81,11 @@ class Users extends Component {
                     <td>{user.id}</td>
                     <td>{user.username}</td>
                     <td>{user.email}</td>
-               <td>{user.accessType}</td>
+                    <td>{user.accessType}</td>
                     <td>
-                        <Button onClick={() => { this.addTaskUserPage(user.id) }}>Add Task</Button>
+                        <Button color="primary" size="sm" className="mr-2" onClick={this.userDetailsPage.bind(this)}>
+                            User Details
+                    </Button>
                         <Button color="primary" size="sm" className="mr-2" onClick={this.openUpdateUserModel.bind(this, user.id, user.accessType, user.accessTypeNo)}>
                             Update
                         </Button>

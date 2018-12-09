@@ -11,8 +11,7 @@ class Home extends Component {
     }
 
     render() {
-        let username = "bill";
-        let password = "abc123";
+        
        
         return (
             < Router >

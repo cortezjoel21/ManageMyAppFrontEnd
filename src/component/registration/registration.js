@@ -3,8 +3,6 @@ import { FormGroup, Table, Button, Modal, NavLink, ModalHeader, ModalBody, Modal
 import axios from 'axios';
 
 class Registration extends Component {
-
-
     state = {
         loggedIn: false,
         registerModal: false,
@@ -26,7 +24,7 @@ class Registration extends Component {
     }
 
     saveUser() {
-        axios.post('http://localhost:8080/dashboard/addUser', this.state.newUser).then((response) => {
+        axios.post('http://localhost:8080/registration/addUser', this.state.newUser).then((response) => {
             let { users } = this.state;
             this.setState({
                 users, registerModal: false, newUser: {
